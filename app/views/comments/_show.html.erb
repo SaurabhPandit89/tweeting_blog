@@ -1,0 +1,5 @@
+<% @blog.comments.each do |comment| %>
+  <p>
+    <%= comment.blog_comment %> -- <b><%= comment.get_user_email %></b>
+  </p>
+<% end %>

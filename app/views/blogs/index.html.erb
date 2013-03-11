@@ -1,0 +1,30 @@
+<h1 align="center">Listing blogs</h1>
+
+<table width="50%" border="1px" align="center" style="margin-top:80px;border-collapse:collapse">
+  <tr>
+    <th width="25%">Post</th>
+    <th width="5%">Comments</th>
+    <th width="10%">Actions</th>
+  </tr>
+
+<% @blogs.each do |blog| %>
+  <tr>
+    <td width="25%" align="center"><%= blog.post %></td>
+    <td width="5%" align="center"><%= blog.comments_count %></td>
+    <td width="10%" align="center">
+      <%= link_to 'Show', blog %>&nbsp;
+      <% if current_user %>
+        <%= link_to 'Edit', edit_blog_path(blog) %>&nbsp;
+        <%= link_to 'Destroy', blog, confirm: 'Are you sure?', method: :delete %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div align="center">
+<% if current_user %>
+  <%= link_to 'New Blog', new_blog_path %>
+<% end %>
+</div>

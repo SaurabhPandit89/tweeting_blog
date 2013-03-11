@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tweeting Blogs</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if current_user %>
+  <div align="right">
+  Welcome, <i style="font-weight:bold"><%= current_user.email %></i> |
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :style => "text-decoration:none"%>
+  </div>
+<% end %>
+<%= yield %>
+<% unless current_user %>
+  <%= link_to 'Sign In', new_user_session_path %> |
+  <%= link_to 'Sign Up', new_user_registration_path %> |
+  <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
+<% end %>
+</body>
+</html>
