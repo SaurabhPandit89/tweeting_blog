@@ -5,7 +5,7 @@ class Blog < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
-  validate :post, :presence => true, :length => {:in => 5..140}
+  validates :post, :presence => true, :length => {:in => 5..140}
 
   def comments_count
     Comment.where("blog_id = ?", id).count
